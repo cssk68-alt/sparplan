@@ -218,7 +218,7 @@
     <div class="header-label">Monatlicher Sparplan</div>
     <div class="header-total" id="hdrTotal"></div>
     <div class="header-sub" id="hdrSub"></div>
-    <div class="header-hint">↓ Segment oder Karte antippen für Details</div>
+    <div class="header-hint">â Segment oder Karte antippen fÃ¼r Details</div>
   </div>
 
   <div class="pie-wrap">
@@ -228,7 +228,7 @@
 
   <div class="pills" id="pills"></div>
   <div class="cards" id="cards"></div>
-  <div class="footer">Stand 09. Mai 2026 · Kurse ca. · Angaben ohne Gewähr</div>
+  <div class="footer">Stand 09. Mai 2026 Â· Kurse ca. Â· Angaben ohne GewÃ¤hr</div>
 </div>
 
 <!-- MODAL -->
@@ -244,7 +244,7 @@
             <div class="modal-group-sub" id="mSub"></div>
           </div>
         </div>
-        <button class="modal-close" onclick="closeModal()">✕</button>
+        <button class="modal-close" onclick="closeModal()">â</button>
       </div>
       <div class="modal-share-bar" id="mShareBar">
         <div class="modal-share-row">
@@ -260,51 +260,51 @@
 </div>
 
 <script>
-// ── DATEN ────────────────────────────────────────────────────
+// ââ DATEN ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const GROUPS = [
-  { name:"USA", color:"#3B82F6", emoji:"🇺🇸", products:[
-    { name:"iShares Core S&P 500 UCITS ETF (Acc)", amount:100, price:"675 €", ticker:"SXR8",
+  { name:"USA", color:"#3B82F6", emoji:"ðºð¸", products:[
+    { name:"iShares Core S&P 500 UCITS ETF (Acc)", amount:100, price:"675 â¬", ticker:"SXR8",
       isin:"IE00B5BMR087", trType:"etf",
       details:[{n:"Nvidia",p:8.2},{n:"Apple",p:6.7},{n:"Microsoft",p:5.0}] }
   ]},
-  { name:"Asien", color:"#F59E0B", emoji:"🌏", products:[
-    { name:"iShares Core MSCI Pacific ex-Japan ETF", amount:75, price:"203 €", ticker:"CPXJ",
+  { name:"Asien", color:"#F59E0B", emoji:"ð", products:[
+    { name:"iShares Core MSCI Pacific ex-Japan ETF", amount:75, price:"203 â¬", ticker:"CPXJ",
       isin:"IE00B52MJY50", trType:"etf",
       details:[{n:"Australien",p:61},{n:"Hongkong",p:22},{n:"Singapur",p:12}] },
-    { name:"iShares MSCI Korea UCITS ETF EUR (Acc)", amount:13, price:"485 €", ticker:"CSKR",
+    { name:"iShares MSCI Korea UCITS ETF EUR (Acc)", amount:13, price:"485 â¬", ticker:"CSKR",
       isin:"IE00B5W4TY14", trType:"etf",
-      warning:"~11% Überschneidung mit EIMI",
+      warning:"~11% Ãberschneidung mit EIMI",
       details:[{n:"Samsung Electronics",p:24},{n:"SK Hynix",p:9},{n:"LG Energy Solution",p:4}] },
-    { name:"iShares Core MSCI Japan IMI UCITS ETF", amount:12, price:"65 €", ticker:"IJPA",
+    { name:"iShares Core MSCI Japan IMI UCITS ETF", amount:12, price:"65 â¬", ticker:"IJPA",
       isin:"IE00B4L5YX21", trType:"etf",
       details:[{n:"Toyota",p:5},{n:"Sony",p:3},{n:"Keyence",p:3}] }
   ]},
-  { name:"Gesundheit", color:"#8B5CF6", emoji:"🏥", products:[
+  { name:"Gesundheit", color:"#8B5CF6", emoji:"ð¥", products:[
     { name:"iShares MSCI World Health Care Sector ETF", amount:70, price:"8 $", ticker:"WHCS",
       isin:"IE00BJ5JNZ06", trType:"etf",
       details:[{n:"Eli Lilly",p:9.8},{n:"Johnson & Johnson",p:7.3},{n:"AbbVie",p:4.9}] },
-    { name:"iShares Ageing Population UCITS ETF (Acc)", amount:25, price:"8 €", ticker:"AGED",
+    { name:"iShares Ageing Population UCITS ETF (Acc)", amount:25, price:"8 â¬", ticker:"AGED",
       isin:"IE00BYZK4669", trType:"etf",
-      details:[{n:"Healthcare-Anteil",p:47},{n:"Finanzdienstleistungen",p:43},{n:"↔ Overlap: Novo Nordisk, Roche, J&J",p:null}] }
+      details:[{n:"Healthcare-Anteil",p:47},{n:"Finanzdienstleistungen",p:43},{n:"â Overlap: Novo Nordisk, Roche, J&J",p:null}] }
   ]},
-  { name:"Edelmetalle", color:"#F97316", emoji:"🥇", products:[
-    { name:"WisdomTree Physical Silver (USD)", amount:30, price:"62 €", ticker:"PHAG",
+  { name:"Edelmetalle", color:"#F97316", emoji:"ð¥", products:[
+    { name:"WisdomTree Physical Silver (USD)", amount:30, price:"62 â¬", ticker:"PHAG",
       isin:"JE00B1VS3333", trType:"etc",
       details:[{n:"100% physisches Silber",p:100}] },
-    { name:"WisdomTree Physical Platinum (USD)", amount:23, price:"161 €", ticker:"PHPT",
+    { name:"WisdomTree Physical Platinum (USD)", amount:23, price:"161 â¬", ticker:"PHPT",
       isin:"JE00B1VS2W53", trType:"etc",
       details:[{n:"100% physisches Platin",p:100}] },
-    { name:"WisdomTree Copper (USD)", amount:22, price:"46 €", ticker:"COPA",
+    { name:"WisdomTree Copper (USD)", amount:22, price:"46 â¬", ticker:"COPA",
       isin:"GB00B15KXQ89", trType:"etc",
       details:[{n:"Kupfer-Futures",p:100}] }
   ]},
-  { name:"Emerging Markets", color:"#10B981", emoji:"🌍", products:[
-    { name:"iShares Core MSCI EM IMI UCITS ETF (Acc)", amount:70, price:"44 €", ticker:"EIMI",
+  { name:"Emerging Markets", color:"#10B981", emoji:"ð", products:[
+    { name:"iShares Core MSCI EM IMI UCITS ETF (Acc)", amount:70, price:"44 â¬", ticker:"EIMI",
       isin:"IE00BKM4GZ66", trType:"etf",
-      details:[{n:"China",p:28},{n:"Indien",p:20},{n:"Taiwan",p:18},{n:"Südkorea",p:11},{n:"Brasilien",p:5}] }
+      details:[{n:"China",p:28},{n:"Indien",p:20},{n:"Taiwan",p:18},{n:"SÃ¼dkorea",p:11},{n:"Brasilien",p:5}] }
   ]},
-  { name:"Europa", color:"#EC4899", emoji:"🇪🇺", products:[
-    { name:"Allianz SE (Einzelaktie)", amount:35, price:"370 €", ticker:"ALV",
+  { name:"Europa", color:"#EC4899", emoji:"ðªðº", products:[
+    { name:"Allianz SE (Einzelaktie)", amount:35, price:"370 â¬", ticker:"ALV",
       isin:"DE0008404005", trType:"aktie",
       details:[{n:"Versicherung & Asset Management",p:100}] },
     { name:"iShares Core FTSE 100 UCITS ETF GBP (Dist)", amount:25, price:"1007 GBp", ticker:"ISF",
@@ -313,20 +313,20 @@ const GROUPS = [
   ]}
 ];
 
-// ── localStorage ─────────────────────────────────────────────
+// ââ localStorage âââââââââââââââââââââââââââââââââââââââââââââ
 const STORAGE_KEY = 'sparplan_currentTotal';
 const DEFAULT_TOTAL = GROUPS.reduce((s,g)=>s+g.products.reduce((a,p)=>a+p.amount,0),0); // 500
 
 const total = DEFAULT_TOTAL;
 const posCount = GROUPS.reduce((s,g)=>s+g.products.length,0);
 
-// Prozentanteile festschreiben (unveränderlich)
+// Prozentanteile festschreiben (unverÃ¤nderlich)
 GROUPS.forEach(g => {
   g.products.forEach(p => { p.pct = p.amount / total; });
   g.pct = g.products.reduce((a,p)=>a+p.pct,0);
 });
 
-// Gespeicherten Wert laden (pro Gerät individuell)
+// Gespeicherten Wert laden (pro GerÃ¤t individuell)
 let currentTotal = parseFloat(localStorage.getItem(STORAGE_KEY)) || DEFAULT_TOTAL;
 
 function saveTotal(val) {
@@ -338,14 +338,14 @@ function fmtAmt(pct){ const v=getAmt(pct); return Number.isInteger(v)?v:v.toFixe
 
 function updateHeader(){
   const hdrEl = document.getElementById('hdrTotal');
-  hdrEl.textContent = currentTotal + ' €';
+  hdrEl.textContent = currentTotal + ' â¬';
   hdrEl.onclick = editTotal;
   hdrEl.style.cursor = 'pointer';
-  document.getElementById('hdrSub').textContent = (currentTotal*12) + ' € / Jahr · ' + posCount + ' Positionen';
+  document.getElementById('hdrSub').textContent = (currentTotal*12) + ' â¬ / Jahr Â· ' + posCount + ' Positionen';
 }
 updateHeader();
 
-// ── PIE CHART (SVG) ──────────────────────────────────────────
+// ââ PIE CHART (SVG) ââââââââââââââââââââââââââââââââââââââââââ
 const svg = document.getElementById('piesvg');
 const cx=130, cy=130, r=110, ri=72, gap=0.03;
 const pieData = GROUPS.map(g=>({
@@ -403,16 +403,16 @@ function showPieCenter(i){
   pieCenter.innerHTML = `
     <div class="pie-center-emoji">${d.emoji}</div>
     <div class="pie-center-name" style="color:${d.color};white-space:nowrap">${d.name}</div>
-    <div class="pie-center-val" style="white-space:nowrap">${val} €/Mo</div>
+    <div class="pie-center-val" style="white-space:nowrap">${val} â¬/Mo</div>
     <div class="pie-center-pct" style="white-space:nowrap">${(d.pct*100).toFixed(1)}%</div>`;
 }
 function resetPieCenter(){
   pieCenter.onclick = editTotal;
   pieCenter.innerHTML = `
     <div style="font-size:11px;color:var(--muted);white-space:nowrap">Gesamt</div>
-    <div style="font-size:22px;font-weight:900;white-space:nowrap">${currentTotal} €</div>
+    <div style="font-size:22px;font-weight:900;white-space:nowrap">${currentTotal} â¬</div>
     <div style="font-size:10px;color:var(--dim);white-space:nowrax">/ Monat</div>
-    <div style="font-size:9px;color:#4b5563;white-space:nowrax;margin-top:2px">antippen zum Ändern</div>`;
+    <div style="font-size:9px;color:#4b5563;white-space:nowrax;margin-top:2px">antippen zum Ãndern</div>`;
 }
 
 function editTotal(){
@@ -421,9 +421,9 @@ function editTotal(){
     <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Betrag eingeben</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:3px">
       <input id="totalInput" class="pie-center-edit" type="number" value="${currentTotal}" min="1" inputmode="numeric"/>
-      <span style="font-size:16px;font-weight:700">€</span>
+      <span style="font-size:16px;font-weight:700">â¬</span>
     </div>
-    <div style="font-size:10px;color:var(--dim);margin-top:4px">Enter oder außen tippen</div>`;
+    <div style="font-size:10px;color:var(--dim);margin-top:4px">Enter oder auÃen tippen</div>`;
   const inp = document.getElementById('totalInput');
   inp.focus(); inp.select();
   inp.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); applyTotal(inp); }});
@@ -434,7 +434,7 @@ function applyTotal(inp){
   const val = parseFloat(inp.value);
   if(!isNaN(val) && val > 0){
     currentTotal = Math.round(val*100)/100;
-    saveTotal(currentTotal); // ← im localStorage sichern
+    saveTotal(currentTotal); // â im localStorage sichern
   }
   updateAll();
 }
@@ -448,7 +448,7 @@ function updateAll(){
   }
 }
 
-// ── CARDS ────────────────────────────────────────────────────
+// ââ CARDS ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderCards(){
   const cardsEl = document.getElementById('cards');
   cardsEl.innerHTML = '';
@@ -465,20 +465,20 @@ function renderCards(){
           <span class="card-name" style="color:${g.color}">${g.name}</span>
           <span class="card-count">${g.products.length} Pos.</span>
         </div>
-        <div class="card-right">${gt} €<span>${pct}%</span></div>
+        <div class="card-right">${gt} â¬<span>${pct}%</span></div>
       </div>
       <div class="card-bar-wrap">
         <div class="card-bar" style="width:${pct}%;background:${g.color}"></div>
       </div>
       <div class="card-tickers">
-        ${g.products.map(p=>`<span class="card-ticker-item">${p.ticker} · ${fmtAmt(p.pct)} €/Mo</span>`).join('')}
+        ${g.products.map(p=>`<span class="card-ticker-item">${p.ticker} Â· ${fmtAmt(p.pct)} â¬/Mo</span>`).join('')}
       </div>`;
     card.addEventListener('click',()=>openModal(i));
     cardsEl.appendChild(card);
   });
 }
 
-// ── PILLS ────────────────────────────────────────────────────
+// ââ PILLS ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const pillsEl = document.getElementById('pills');
 GROUPS.forEach((g,i)=>{
   const gt = g.products.reduce((a,p)=>a+p.amount,0);
@@ -495,7 +495,7 @@ GROUPS.forEach((g,i)=>{
 resetPieCenter();
 renderCards();
 
-// ── TRADE REPUBLIC DEEPLINK ───────────────────────────────────
+// ââ TRADE REPUBLIC DEEPLINK âââââââââââââââââââââââââââââââââââ
 function openTR(isin) {
   const ua = navigator.userAgent;
   const isAndroid = /Android/i.test(ua);
@@ -504,7 +504,7 @@ function openTR(isin) {
   const appStore  = 'https://apps.apple.com/de/app/trade-republic/id1410703839';
 
   copyToClipboard(isin);
-  showToast('ISIN ' + isin + ' kopiert – in TR-Suche einfügen');
+  showToast('ISIN ' + isin + ' kopiert â in TR-Suche einfÃ¼gen');
 
   setTimeout(() => {
     if (isAndroid) {
@@ -558,7 +558,7 @@ function showToast(msg) {
   t._timer = setTimeout(() => { t.style.opacity = '0'; }, 3000);
 }
 
-// ── MODAL ────────────────────────────────────────────────────
+// ââ MODAL ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function openModal(groupIndex){
   window._openModalIndex = groupIndex;
   const g = GROUPS[groupIndex];
@@ -568,14 +568,14 @@ function openModal(groupIndex){
   document.getElementById('mEmoji').textContent = g.emoji;
   document.getElementById('mName').style.color = g.color;
   document.getElementById('mName').textContent = g.name;
-  document.getElementById('mSub').innerHTML = `<b>${gt} €</b> / Mo · <b>${Math.round(gt*12)} €</b> / Jahr`;
+  document.getElementById('mSub').innerHTML = `<b>${gt} â¬</b> / Mo Â· <b>${Math.round(gt*12)} â¬</b> / Jahr`;
   document.getElementById('modalHeader').style.borderBottomColor = g.color + '22';
   document.getElementById('mShareBar').style.background = g.color + '12';
   document.getElementById('mSharePct').style.color = g.color;
   document.getElementById('mSharePct').textContent = pct.toFixed(1)+'%';
   document.getElementById('mShareFill').style.width = pct+'%';
   document.getElementById('mShareFill').style.background = g.color;
-  document.getElementById('mShareNote').textContent = `von ${currentTotal} €/Monat gesamt`;
+  document.getElementById('mShareNote').textContent = `von ${currentTotal} â¬/Monat gesamt`;
 
   const prod = document.getElementById('mProducts');
   prod.innerHTML = '';
@@ -606,8 +606,8 @@ function openModal(groupIndex){
             <div class="mini-bar-fill" style="width:${barW}%;background:${g.color}"></div>
           </div>
           <div class="detail-euros">
-            <span>≈ <b>${mo} €</b>/Mo</span>
-            <span>≈ <b>${yr} €</b>/Jahr</span>
+            <span>â <b>${mo} â¬</b>/Mo</span>
+            <span>â <b>${yr} â¬</b>/Jahr</span>
           </div>
         </div>`;
       }).join('');
@@ -625,11 +625,11 @@ function openModal(groupIndex){
         <div class="stats-row">
           <div class="stat">
             <div class="stat-label">Monatlich</div>
-            <div class="stat-val" style="color:${g.color}">${fmtAmt(p.pct)} €</div>
+            <div class="stat-val" style="color:${g.color}">${fmtAmt(p.pct)} â¬</div>
           </div>
           <div class="stat">
-            <div class="stat-label">Jährlich</div>
-            <div class="stat-val" style="color:#d1d5db">${Math.round(pAmt*12)} €</div>
+            <div class="stat-label">JÃ¤hrlich</div>
+            <div class="stat-val" style="color:#d1d5db">${Math.round(pAmt*12)} â¬</div>
           </div>
           <div class="stat">
             <div class="stat-label">Kurs (09.05)</div>
@@ -641,7 +641,7 @@ function openModal(groupIndex){
       ${p.warning ? `<div style="padding:4px 14px 6px;font-size:11px;color:#a78bfa;font-style:italic">${p.warning}</div>` : ''}
       <div style="display:flex;gap:8px;padding:8px 14px 12px;flex-wrap:wrap">
         <button class="tr-link" style="margin:0;flex:1;min-width:0" onclick="openTR('${p.isin}')">
-          <span>🟢</span> Trade Republic
+          <span>ð¢</span> Trade Republic
           <span style="font-size:10px;opacity:0.5;overflow:hidden;text-overflow:ellipsis">${p.isin}</span>
         </button>
       </div>`;
@@ -658,7 +658,7 @@ function closeModal(){
   window._openModalIndex = undefined;
 }
 
-// ── SERVICE WORKER REGISTRIERUnG �─────────────────────────────
+// ââ SERVICE WORKER REGISTRIERUnG ââââââââââââââââââââââââââââââ
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(err => {
@@ -667,5 +667,8 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+<button id="installBtn" style="display:none;position:fixed;top:20px;left:20px;padding:8px 16px;background:linear-gradient(90deg,#a78bfa,#60a5fa);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;z-index:999;font-size:12px" onclick="installPWA()">
+  📲 App installieren
+</button>
 </body>
 </html>
