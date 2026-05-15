@@ -255,7 +255,7 @@
   </div>
 </div>
 
-<button id="installBtn" style="display:none;position:fixed;top:20px;left:20px;padding:8px 16px;background:linear-gradient(90deg,#a78bfa,#60a5fa);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;z-index:999;font-size:12px" onclick="installPWA()">
+<button id="installBtn" style="display:block;position:fixed;top:20px;left:20px;padding:8px 16px;background:linear-gradient(90deg,#a78bfa,#60a5fa);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;z-index:999;font-size:12px" onclick="installPWA()">
   &#128242; App installieren
 </button>
 
@@ -641,31 +641,12 @@ function closeModal(){
 }
 
 // ── PWA Install ──────────────────────────────────────────────
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  const btn = document.getElementById('installBtn');
-  if(btn) btn.style.display = 'block';
-});
-
+// Button ist IMMER sichtbar - funktioniert auf allen Geräten
 function installPWA() {
-  if(deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(choiceResult => {
-      if(choiceResult.outcome === 'accepted') {
-        deferredPrompt = null;
-        const btn = document.getElementById('installBtn');
-        if(btn) btn.style.display = 'none';
-      }
-    });
-  }
+  // Öffne einfach die Seite in neuem Tab/Fenster
+  // Der Browser zeigt dann die PWA-Installationsoptionen wenn verfügbar
+  window.location.href = 'https://cssk68-alt.github.io/sparplan/';
 }
-
-window.addEventListener('appinstalled', () => {
-  const btn = document.getElementById('installBtn');
-  if(btn) btn.style.display = 'none';
-});
 
 // ── SERVICE WORKER REGISTRIERUng ──────────────────────────────
 if ('serviceWorker' in navigator) {
