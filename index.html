@@ -256,12 +256,12 @@
 </div>
 
 <button id="installBtn" style="display:block;position:fixed;top:20px;left:20px;padding:8px 16px;background:linear-gradient(90deg,#a78bfa,#60a5fa);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;z-index:999;font-size:12px" onclick="installPWA()">
-  &#128242; App installieren
+  📲 App installieren
 </button>
 
 <script>
 const GROUPS = [
-  { name:"USA", color:"#3B82F6", emoji:"&#127482;&#127483;", products:[
+  { name:"USA", color:"#3B82F6", emoji:"🇺🇸", products:[
     { name:"Vanguard S&#38;P 500 ETF (Acc)", amount:75, price:"450 &#36;", ticker:"VOO",
       isin:"US9229087690", trType:"etf",
       details:[{n:"Apple",p:7},{n:"Microsoft",p:6},{n:"Nvidia",p:4}] },
@@ -269,7 +269,7 @@ const GROUPS = [
       isin:"US46433D6693", trType:"etf",
       details:[{n:"Growth-Focus",p:100}] }
   ]},
-  { name:"Asien", color:"#F59E0B", emoji:"&#127759;", products:[
+  { name:"Asien", color:"#F59E0B", emoji:"🌏", products:[
     { name:"iShares MSCI Taiwan ETF", amount:85, price:"620 &#8364;", ticker:"EWT",
       isin:"US4642881528", trType:"etf",
       details:[{n:"Taiwan",p:100},{n:"Semiconductor",p:45}] },
@@ -280,7 +280,7 @@ const GROUPS = [
       isin:"US4642884842", trType:"etf",
       details:[{n:"Australien",p:61},{n:"Hongkong",p:22},{n:"Singapur",p:12}] }
   ]},
-  { name:"Gesundheit", color:"#8B5CF6", emoji:"&#129365;", products:[
+  { name:"Gesundheit", color:"#8B5CF6", emoji:"🏥", products:[
     { name:"iShares MSCI World Health Care", amount:70, price:"8 &#36;", ticker:"WHCS",
       isin:"US4642880566", trType:"etf",
       details:[{n:"Eli Lilly",p:9.8},{n:"J&#38;J",p:7.3}] },
@@ -288,7 +288,7 @@ const GROUPS = [
       isin:"US4642881726", trType:"etf",
       details:[{n:"Healthcare",p:47}] }
   ]},
-  { name:"Edelmetalle", color:"#F97316", emoji:"&#129351;", products:[
+  { name:"Edelmetalle", color:"#F97316", emoji:"🥇", products:[
     { name:"WisdomTree Physical Silver", amount:30, price:"62 &#8364;", ticker:"PHAG",
       isin:"US4642885451", trType:"etc",
       details:[{n:"100% physisches Silber",p:100}] },
@@ -299,12 +299,12 @@ const GROUPS = [
       isin:"US4642886138", trType:"etc",
       details:[{n:"Kupfer-Futures",p:100}] }
   ]},
-  { name:"Emerging Markets", color:"#10B981", emoji:"&#127757;", products:[
+  { name:"Emerging Markets", color:"#10B981", emoji:"🌍", products:[
     { name:"iShares Core MSCI EM IMI UCITS ETF", amount:70, price:"44 &#8364;", ticker:"EIMI",
       isin:"US4642886435", trType:"etf",
       details:[{n:"China",p:28},{n:"Indien",p:20}] }
   ]},
-  { name:"Europa", color:"#EC4899", emoji:"&#127466;&#127482;", products:[
+  { name:"Europa", color:"#EC4899", emoji:"🇪🇺", products:[
     { name:"Allianz SE (Einzelaktie)", amount:35, price:"370 &#8364;", ticker:"ALV",
       isin:"DE0008404005", trType:"aktie",
       details:[{n:"Versicherung &#38; Asset Management",p:100}] },
@@ -623,7 +623,7 @@ function openModal(groupIndex){
       ${p.warning ? `<div style="padding:4px 14px 6px;font-size:11px;color:#a78bfa;font-style:italic">${p.warning}</div>` : ''}
       <div style="display:flex;gap:8px;padding:8px 14px 12px;flex-wrap:wrap">
         <button class="tr-link" style="margin:0;flex:1;min-width:0" onclick="openTR('${p.isin}')">
-          <span>&#128994;</span> Trade Republic
+          <span>🟢</span> Trade Republic
           <span style="font-size:10px;opacity:0.5;overflow:hidden;text-overflow:ellipsis">${p.isin}</span>
         </button>
       </div>`;
