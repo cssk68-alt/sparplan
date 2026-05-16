@@ -1,9 +1,13 @@
 <!DOCTYPE html>
+<!-- Cache-Buster: 2026-05-15T17:15:00 -->
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Mein Sparplan</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Mein Sparplan - v20260515t1715</title>
 
 <!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
@@ -219,6 +223,11 @@
     <div class="header-sub" id="hdrSub"></div>
     <div class="header-hint">↓ Segment oder Karte antippen für Details</div>
   </div>
+<button id="installBtn" style="display:none; position:fixed; top:8px; left:8px; padding:6px 10px; background:#a78bfa; color:#fff; border:none; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer; -webkit-tap-highlight-color:transparent; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,0.4);">📲 Installieren</button>
+<div id="iosHint" style="display:none; position:fixed; top:8px; left:8px; max-width:230px; padding:8px 10px; background:#1e293b; border:1px solid #a78bfa; color:#e2e8f0; border-radius:8px; font-size:11px; line-height:1.4; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+  📲 <b>Zum Home:</b> unten <b>Teilen</b> ⬆️ → <b>Zum Home-Bildschirm</b>
+  <span style="display:block; margin-top:4px; font-size:10px; color:#94a3b8; cursor:pointer" onclick="document.getElementById('iosHint').style.display='none'">✕ schließen</span>
+</div>
 
   <div class="pie-wrap">
     <svg id="piesvg" viewBox="0 0 260 260" width="260" height="260"></svg>
@@ -660,14 +669,67 @@ function closeModal(){
   window._openModalIndex = undefined;
 }
 
+// ── PWA INSTALL PROMPT ──────────────────────────────────────
+let deferredPrompt = null;
+const installBtn = document.getElementById('installBtn');
+const iosHint = document.getElementById('iosHint');
+
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+// iOS Safari hat kein beforeinstallprompt → eigener Hinweis
+if (!isStandalone && isIOS) {
+  iosHint.style.display = 'block';
+}
+
+// Android/Desktop Chrome/Edge: beforeinstallprompt feuert wenn installierbar
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone) installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response to the install prompt: ${outcome}`);
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  console.log('PWA wurde installiert');
+  installBtn.style.display = 'none';
+  iosHint.style.display = 'none';
+});
+
 // ── SERVICE WORKER REGISTRIERUNG ─────────────────────────────
+// WICHTIG: KEIN automatischer Reload! Das würde beforeinstallprompt zerstören,
+// und Chrome feuert es nur einmal pro Session. Der neue SW wird beim nächsten
+// manuellen Tab-Refresh aktiv (skipWaiting/clients.claim sind im sw.js).
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(err => {
+    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).then(reg => {
+      reg.update();
+    }).catch(err => {
       console.warn('Service Worker Fehler:', err);
     });
   });
 }
+
+// ── INSTALL-BUTTON FALLBACK ──────────────────────────────────
+// Falls beforeinstallprompt nicht feuert (z.B. nach einem Reload, oder weil
+// Chrome es nicht nochmal feuert), zeige nach 3 Sek einen Manual-Hinweis.
+setTimeout(() => {
+  if (!deferredPrompt && !isIOS && !isStandalone && installBtn.style.display === 'none') {
+    installBtn.style.display = 'block';
+    installBtn.onclick = () => {
+      alert('App installieren:\n\n• Desktop Chrome/Edge: Klick das Install-Icon rechts in der Adressleiste (kleiner Monitor mit Pfeil).\n• Android Chrome: Browser-Menü ⋮ → "App installieren" oder "Zum Startbildschirm hinzufügen".\n• Falls nichts angezeigt wird, ist die App vermutlich schon installiert.');
+    };
+  }
+}, 3000);
 </script>
 </body>
 </html>
