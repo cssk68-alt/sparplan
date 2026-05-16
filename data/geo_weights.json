@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "last_updated": "2026-05-16",
+    "total_monthly_eur": 500,
+    "note": "pct_gesamt = Anteil am Gesamtportfolio. EUR = currentTotal × pct_gesamt / 100 (dynamisch berechnen!)",
+    "sources": [
+      "MSCI World Health Care Index Factsheet (Dez 2025): USA 69%, CH 10%, UK 6%, JP 4%, FR 3%",
+      "MSCI Pacific ex-Japan Index: AU 63%, HK 22%, SG 11%, NZ 4%",
+      "MSCI EM IMI (justETF Apr 2026): TW 25%, CN 23%, KR 13%, IN 15%, BR 5%, SA 3%",
+      "Silver mining (USGS 2025): MX 24%, PE 15%, CN 13%, RU 8%, CL 5%, AU 5%, PL 5%, BO 5%",
+      "Platinum mining (USGS 2025): ZA 73%, RU 11%, ZW 8%, CA 4%, US 2%",
+      "Copper mining (USGS 2025): CL 27%, PE 10%, CD 10%, CN 8%, US 6%, AU 5%, ZM 4%, ID 4%, MX 3%",
+      "AGED iSTOXX FactSet (iShares Factsheet): US 43%, JP 22%, UK 8%, DE 4%, CH 4%, FR 3%"
+    ],
+    "portfolio_weights": {
+      "SXR8": 0.20, "CPXJ": 0.15, "CSKR": 0.026, "IJPA": 0.024,
+      "WHCS": 0.14, "AGED": 0.05, "PHAG": 0.06,
+      "PHPT": 0.046, "COPA": 0.044, "EIMI": 0.14,
+      "ALV": 0.07, "ISF": 0.05
+    }
+  },
+  "countries": [
+    {"land": "USA",          "iso_numeric": 840, "flag": "🇺🇸", "pct_gesamt": 31.63, "via": ["SXR8","WHCS","AGED","COPA","PHPT","PHAG"]},
+    {"land": "Australien",   "iso_numeric": 36,  "flag": "🇦🇺", "pct_gesamt": 9.97,  "via": ["CPXJ","COPA","PHAG"]},
+    {"land": "Deutschland",  "iso_numeric": 276, "flag": "🇩🇪", "pct_gesamt": 7.56,  "via": ["ALV","WHCS","AGED"]},
+    {"land": "UK",           "iso_numeric": 826, "flag": "🇬🇧", "pct_gesamt": 6.64,  "via": ["ISF","WHCS","AGED"]},
+    {"land": "Südkorea",     "iso_numeric": 410, "flag": "🇰🇷", "pct_gesamt": 4.42,  "via": ["CSKR","EIMI"]},
+    {"land": "Japan",        "iso_numeric": 392, "flag": "🇯🇵", "pct_gesamt": 4.04,  "via": ["IJPA","WHCS","AGED"]},
+    {"land": "Südafrika",    "iso_numeric": 710, "flag": "🇿🇦", "pct_gesamt": 3.64,  "via": ["PHPT","EIMI"]},
+    {"land": "Taiwan",       "iso_numeric": 158, "flag": "🇹🇼", "pct_gesamt": 3.50,  "via": ["EIMI"]},
+    {"land": "Hongkong",     "iso_numeric": 344, "flag": "🇭🇰", "pct_gesamt": 3.30,  "via": ["CPXJ"]},
+    {"land": "China",        "iso_numeric": 156, "flag": "🇨🇳", "pct_gesamt": 3.22,  "via": ["EIMI","PHAG"]},
+    {"land": "Indien",       "iso_numeric": 356, "flag": "🇮🇳", "pct_gesamt": 2.10,  "via": ["EIMI"]},
+    {"land": "Mexiko",       "iso_numeric": 484, "flag": "🇲🇽", "pct_gesamt": 1.78,  "via": ["PHAG","COPA","EIMI"]},
+    {"land": "Schweiz",      "iso_numeric": 756, "flag": "🇨🇭", "pct_gesamt": 1.60,  "via": ["WHCS","AGED"]},
+    {"land": "Chile",        "iso_numeric": 152, "flag": "🇨🇱", "pct_gesamt": 1.49,  "via": ["COPA","PHAG"]},
+    {"land": "Peru",         "iso_numeric": 604, "flag": "🇵🇪", "pct_gesamt": 1.34,  "via": ["PHAG","COPA"]},
+    {"land": "Singapur",     "iso_numeric": 702, "flag": "🇸🇬", "pct_gesamt": 1.65,  "via": ["CPXJ"]},
+    {"land": "Russland",     "iso_numeric": 643, "flag": "🇷🇺", "pct_gesamt": 0.99,  "via": ["PHAG","PHPT"]},
+    {"land": "Brasilien",    "iso_numeric": 76,  "flag": "🇧🇷", "pct_gesamt": 0.70,  "via": ["EIMI"]},
+    {"land": "Neuseeland",   "iso_numeric": 554, "flag": "🇳🇿", "pct_gesamt": 0.60,  "via": ["CPXJ"]},
+    {"land": "Frankreich",   "iso_numeric": 250, "flag": "🇫🇷", "pct_gesamt": 0.57,  "via": ["WHCS","AGED"]},
+    {"land": "Dänemark",     "iso_numeric": 208, "flag": "🇩🇰", "pct_gesamt": 0.56,  "via": ["WHCS"]},
+    {"land": "Saudi-Arabien","iso_numeric": 682, "flag": "🇸🇦", "pct_gesamt": 0.42,  "via": ["EIMI"]},
+    {"land": "DRK",          "iso_numeric": 180, "flag": "🇨🇩", "pct_gesamt": 0.44,  "via": ["COPA"]},
+    {"land": "Zimbabwe",     "iso_numeric": 716, "flag": "🇿🇼", "pct_gesamt": 0.37,  "via": ["PHPT"]},
+    {"land": "Indonesien",   "iso_numeric": 360, "flag": "🇮🇩", "pct_gesamt": 0.39,  "via": ["COPA","EIMI"]},
+    {"land": "Polen",        "iso_numeric": 616, "flag": "🇵🇱", "pct_gesamt": 0.30,  "via": ["PHAG"]},
+    {"land": "Bolivien",     "iso_numeric": 68,  "flag": "🇧🇴", "pct_gesamt": 0.30,  "via": ["PHAG"]},
+    {"land": "Argentinien",  "iso_numeric": 32,  "flag": "🇦🇷", "pct_gesamt": 0.30,  "via": ["PHAG"]},
+    {"land": "Thailand",     "iso_numeric": 764, "flag": "🇹🇭", "pct_gesamt": 0.21,  "via": ["EIMI"]},
+    {"land": "Sambia",       "iso_numeric": 894, "flag": "🇿🇲", "pct_gesamt": 0.18,  "via": ["COPA"]},
+    {"land": "Kanada",       "iso_numeric": 124, "flag": "🇨🇦", "pct_gesamt": 0.28,  "via": ["PHPT","SXR8"]},
+    {"land": "Niederlande",  "iso_numeric": 528, "flag": "🇳🇱", "pct_gesamt": 0.40,  "via": ["WHCS","AGED"]},
+    {"land": "Schweden",     "iso_numeric": 752, "flag": "🇸🇪", "pct_gesamt": 0.25,  "via": ["WHCS","AGED"]},
+    {"land": "Türkei",       "iso_numeric": 792, "flag": "🇹🇷", "pct_gesamt": 0.14,  "via": ["EIMI"]},
+    {"land": "Malaysia",     "iso_numeric": 458, "flag": "🇲🇾", "pct_gesamt": 0.21,  "via": ["EIMI"]},
+    {"land": "Philippinen",  "iso_numeric": 608, "flag": "🇵🇭", "pct_gesamt": 0.14,  "via": ["EIMI"]},
+    {"land": "Ägypten",      "iso_numeric": 818, "flag": "🇪🇬", "pct_gesamt": 0.08,  "via": ["EIMI"]},
+    {"land": "Kolumbien",    "iso_numeric": 170, "flag": "🇨🇴", "pct_gesamt": 0.06,  "via": ["EIMI"]}
+  ],
+  "regions": [
+    {"region": "Nordamerika",    "pct_gesamt": 32.21, "länder": ["USA","Kanada"]},
+    {"region": "Europa",         "pct_gesamt": 17.88, "länder": ["Deutschland","UK","Schweiz","Frankreich","Dänemark","Niederlande","Schweden","Polen"]},
+    {"region": "Asien-Pazifik",  "pct_gesamt": 23.68, "länder": ["Australien","Japan","Südkorea","Taiwan","Hongkong","China","Indien","Singapur","Neuseeland","Indonesien","Thailand","Malaysia","Philippinen"]},
+    {"region": "Emerging Mkts",  "pct_gesamt": 9.65,  "länder": ["Brasilien","Saudi-Arabien","Türkei","Ägypten","Kolumbien"]},
+    {"region": "Edelmetalle-Länder","pct_gesamt": 9.01,"länder": ["Südafrika","Mexiko","Chile","Peru","Russland","DRK","Zimbabwe","Bolivien","Argentinien","Sambia"]},
+    {"region": "Sonstige",       "pct_gesamt": 7.57,  "länder": []}
+  ]
+}
