@@ -284,6 +284,17 @@ html, body { overflow-x: hidden; }
 .geo-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .geo-row-eur { text-align: right; font-size: 13px; font-weight: 700; }
 .geo-row-pct { text-align: right; font-size: 13px; font-weight: 700; }
+
+.geo-subrows { padding: 0 18px 12px 36px; display: none; flex-direction: column; gap: 4px; background: rgba(255,255,255,0.015); border-top: 1px solid rgba(255,255,255,0.03); }
+.geo-subrows.open { display: flex; }
+.geo-subrow { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #9ca3af; padding: 4px 0; }
+.geo-subrow-left { display: flex; align-items: center; gap: 6px; }
+.geo-invested { font-size: 9px; background: rgba(52,211,153,0.15); color: #34d399; border-radius: 4px; padding: 1px 5px; font-weight: 700; }
+.geo-subrow-right { display: flex; gap: 12px; }
+.geo-subrow-right b { color: #f3f4f6; font-weight: 600; }
+.geo-row .geo-chev { transition: transform 0.2s; display: inline-block; margin-left: 4px; font-size: 9px; opacity: 0.5; }
+.geo-row.open .geo-chev { transform: rotate(90deg); }
+
 .geo-loading { padding: 30px; text-align: center; color: #6b7280; font-size: 13px; }
 
 </style>
@@ -913,12 +924,47 @@ function renderLegendAndTable() {
     row.className = 'geo-row';
     row.dataset.rid = r.region;
     row.innerHTML =
-      '<div class="geo-row-name"><div class="geo-dot" style="background:'+meta.color+'"></div>'+meta.emoji+' '+r.region+'</div>'+
+      '<div class="geo-row-name"><div class="geo-dot" style="background:'+meta.color+'"></div>'+meta.emoji+' '+r.region+'<span class="geo-chev">▶</span></div>'+
       '<div class="geo-row-eur" data-eur-pct="'+pct+'">—</div>'+
       '<div class="geo-row-pct" style="color:'+meta.color+'">'+pct.toFixed(1)+'%</div>';
-    row.addEventListener('click', () => selectGeoRegion(r.region));
     rowMap[r.region] = row;
     tbody.appendChild(row);
+
+    // Subrows mit Ländern dieser Region
+    const subrows = document.createElement('div');
+    subrows.className = 'geo-subrows';
+    subrows.dataset.rid = r.region;
+    const countriesInRegion = (_geoData.countries || []).filter(c => (r['länder'] || []).includes(c.land));
+    countriesInRegion.sort((a,b) => b.pct_gesamt - a.pct_gesamt);
+    countriesInRegion.forEach(c => {
+      const invested = Array.isArray(c.via) && c.via.length > 0;
+      const sr = document.createElement('div');
+      sr.className = 'geo-subrow';
+      sr.innerHTML =
+        '<div class="geo-subrow-left">'+
+          c.flag+' '+c.land+
+          (invested ? '<span class="geo-invested">✓ '+c.via.join(', ')+'</span>' : '')+
+        '</div>'+
+        '<div class="geo-subrow-right">'+
+          '<span><b class="geo-sub-eur" data-eur-pct="'+c.pct_gesamt+'">—</b></span>'+
+          '<span><b>'+c.pct_gesamt.toFixed(2)+'%</b></span>'+
+        '</div>';
+      subrows.appendChild(sr);
+    });
+    if (countriesInRegion.length === 0) {
+      const sr = document.createElement('div');
+      sr.className = 'geo-subrow';
+      sr.innerHTML = '<div class="geo-subrow-left" style="opacity:0.5">Keine Länderdetails</div>';
+      subrows.appendChild(sr);
+    }
+    tbody.appendChild(subrows);
+
+    row.addEventListener('click', () => {
+      const wasOpen = subrows.classList.contains('open');
+      subrows.classList.toggle('open');
+      row.classList.toggle('open');
+      selectGeoRegion(r.region);
+    });
   });
   window._geoRowMap = rowMap;
 }
@@ -927,8 +973,12 @@ function updateGeoEUR() {
   if (!_geoRegions) return;
   document.querySelectorAll('.geo-row-eur').forEach(el => {
     const pct = parseFloat(el.dataset.eurPct);
-    const eur = Math.round(currentTotal * pct / 100);
-    el.textContent = eur + ' €';
+    el.textContent = Math.round(currentTotal * pct / 100) + ' €';
+  });
+  document.querySelectorAll('.geo-sub-eur').forEach(el => {
+    const pct = parseFloat(el.dataset.eurPct);
+    const eur = currentTotal * pct / 100;
+    el.textContent = (eur >= 10 ? Math.round(eur) : eur.toFixed(1)) + ' €';
   });
   document.getElementById('geoTotalBadge').textContent = currentTotal + ' € / Monat';
 }
