@@ -1,0 +1,28 @@
+name: Update ETF Geo Weights
+on:
+  schedule:
+    - cron: '0 2 * * 0' # Jeden Sonntag um 02:00 UTC
+  workflow_dispatch: # Manuelles Starten über GitHub UI möglich
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run Scraper Script
+        run: python update_weights.py
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/geo_weights.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update ETF geographic weights $(date +%Y-%m-%d)"
+          git push
