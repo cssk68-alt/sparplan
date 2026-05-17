@@ -875,7 +875,7 @@ const REGION_META = {
   'Asien-Pazifik':  { color:'#F59E0B', emoji:'🌏' },
   'Emerging Mkts':  { color:'#10B981', emoji:'🌍' },
   'Edelmetalle-Länder': { color:'#F97316', emoji:'🥇' },
-  'Sonstige':       { color:'#8B5CF6', emoji:'🏥' }
+  'ETF-Cash & Reserven': { color:'#64748b', emoji:'💰' }
 };
 
 function regionOf(landName, regionsData) {
@@ -954,7 +954,13 @@ function renderLegendAndTable() {
     if (countriesInRegion.length === 0) {
       const sr = document.createElement('div');
       sr.className = 'geo-subrow';
-      sr.innerHTML = '<div class="geo-subrow-left" style="opacity:0.5">Keine Länderdetails</div>';
+      sr.style.display = 'block';
+      sr.innerHTML = '<div style="font-size:11px;color:#9ca3af;line-height:1.5">'+
+        '<b style="color:#f3f4f6">Liquiditätsreserven der ETFs.</b><br>'+
+        'Jeder ETF hält ~1% Cash für tägliche Liquidität '+
+        '(Ein-/Auszahlungen, Rebalancing). Plus Mikro-Anteile in Ländern unter 0,05% '+
+        'die nicht einzeln aufgeführt werden. '+
+        'Echtes Geld &mdash; nur nicht einem konkreten Land zuordenbar.</div>';
       subrows.appendChild(sr);
     }
     tbody.appendChild(subrows);
