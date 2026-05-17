@@ -20,18 +20,18 @@ from datetime import datetime
 PORTFOLIO = {
     "SXR8":  {"isin": "IE00B5BMR087", "product_id": "253743", "pct": 0.200},  # iShares Core S&P 500
     "CPXJ":  {"isin": "IE00B52MJY50", "product_id": "253735", "pct": 0.150},  # MSCI Pacific ex-Japan
-    "CSKR":  {"isin": "IE00B5W4TY14", "product_id": "253743", "pct": 0.026},  # MSCI Korea  ← product_id prüfen
-    "IJPA":  {"isin": "IE00B42Z5J44", "product_id": "251929", "pct": 0.024},  # MSCI Japan IMI
+    "CSKR":  {"isin": "IE00B5W4TY14", "product_id": "253742", "pct": 0.026},  # MSCI Korea (Product-ID korrigiert)
+    "IJPA":  {"isin": "IE00B4L5YX21", "product_id": "251929", "pct": 0.024},  # MSCI Japan IMI (ISIN korrigiert)
     "WHCS":  {"isin": "IE00B4L5Y983", "product_id": "251882", "pct": 0.140},  # MSCI World Health Care
     "AGED":  {"isin": "IE00BYZK4669", "product_id": "284218", "pct": 0.050},  # Ageing Population
     "EIMI":  {"isin": "IE00BKM4GZ66", "product_id": "264659", "pct": 0.140},  # MSCI EM IMI
     # Edelmetalle: keine Länder-Tab → Fallback auf Mining-Daten (statisch)
     "PHAG":  {"isin": "JE00B1VS3333", "product_id": None,     "pct": 0.060},  # Physical Silver
     "PHPT":  {"isin": "JE00B1VS2W53", "product_id": None,     "pct": 0.046},  # Physical Platinum
-    "COPA":  {"isin": "JE00B4MKCJ84", "product_id": None,     "pct": 0.044},  # Copper Futures
+    "COPA":  {"isin": "GB00B15KXQ89", "product_id": None,     "pct": 0.044},  # Copper ETC (ISIN korrigiert)
     # Einzelpositionen
     "ALV":   {"isin": "DE0008404005", "product_id": None,     "pct": 0.070},  # Allianz SE → Deutschland
-    "ISF":   {"isin": "IE0005042456", "product_id": "251882", "pct": 0.050},  # FTSE 100 → UK ← product_id prüfen
+    "ISF":   {"isin": "IE0005042456", "product_id": "251882", "pct": 0.050},  # FTSE 100 → UK
 }
 
 # ── Statische Fallback-Daten für Edelmetalle (USGS 2025, Förderländer) ────────
