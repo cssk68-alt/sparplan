@@ -401,7 +401,7 @@
   "regions": [
     {
       "region": "Nordamerika",
-      "pct_gesamt": 32.21,
+      "pct_gesamt": 31.91,
       "länder": [
         "USA",
         "Kanada"
@@ -423,7 +423,7 @@
     },
     {
       "region": "Asien-Pazifik",
-      "pct_gesamt": 23.68,
+      "pct_gesamt": 33.75,
       "länder": [
         "Australien",
         "Japan",
@@ -442,27 +442,41 @@
     },
     {
       "region": "Emerging Mkts",
-      "pct_gesamt": 9.65,
+      "pct_gesamt": 5.32,
       "länder": [
+        "Argentinien",
+        "Bolivien",
         "Brasilien",
+        "DRK",
+        "Kolumbien",
+        "Peru",
+        "Russland",
+        "Sambia",
         "Saudi-Arabien",
         "Türkei",
-        "Ägypten",
-        "Kolumbien"
+        "Zimbabwe",
+        "Ägypten"
       ]
     },
     {
       "region": "Edelmetalle-Länder",
-      "pct_gesamt": 9.01,
+      "pct_gesamt": 10.83,
       "länder": [
         "Südafrika",
         "Mexiko",
-        "Chile"
+        "Chile",
+        "Peru",
+        "Russland",
+        "DRK",
+        "Zimbabwe",
+        "Bolivien",
+        "Argentinien",
+        "Sambia"
       ]
     },
     {
-      "region": "Sonstige",
-      "pct_gesamt": 7.57,
+      "region": "ETF-Cash & Reserven",
+      "pct_gesamt": 0.31,
       "länder": []
     }
   ]
